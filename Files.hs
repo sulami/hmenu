@@ -21,5 +21,6 @@ getExecutables (x:xs) = do e <- gE x
                            return $ e ++ es
   where
     gE :: String -> IO [String]
-    gE p = fmap words $ readProcess "find" [p, "-perm", "-a=x", "-print"] []
+    gE p = fmap words $ readProcess "find" [p, "-perm", "-a=x", "-printf",
+                                            "%f\n"] []
 
