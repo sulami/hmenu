@@ -3,7 +3,7 @@ module Main where
 import Data.List (intersperse)
 import System.Environment (getArgs)
 import System.IO (
-  hFlush, stdout, hSetBuffering, stdin, BufferMode (NoBuffering)
+  hFlush, stdout, hSetBuffering, stdin, BufferMode (NoBuffering), hSetEcho
   )
 
 import Files
@@ -14,15 +14,20 @@ ff list q = do query <- getChar
                let nq = case query of
                           '\x7f' -> if q == "" then q else init q -- Backspace
                           _      -> q ++ [query]
-               putChar '\r'
-               case nq of
-                 "" -> putStrLn $ "> " ++ nq
-                 _  -> do mapM_ putStrLn $ fuzzyFinder nq list
-                          putStrLn $ "> " ++ nq
+               putChar '\n'
+               let results = case nq of
+                              "" -> list
+                              _  -> fuzzyFinder nq list
+               mapM_ putStr $ intersperse " " results
+               putStr $ "\n> " ++ nq
+               hFlush stdout
                ff list nq
 
 main = do path <- getPath
           list <- getExecutables path
           hSetBuffering stdin NoBuffering
+          hSetEcho stdin False
+          putStr "> "
+          hFlush stdout
           ff list ""
 
