@@ -5,8 +5,8 @@ import System.IO (hFlush, stdout)
 import Files
 import FuzzyFinder
 
-main = do list <- getArgs
-          path <- getPath
+main = do path <- getPath
+          list <- getExecutables path
           putStr "Entery query: "
           hFlush stdout
           query <- getLine
