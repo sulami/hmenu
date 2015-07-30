@@ -24,9 +24,12 @@ ff list q = do query <- getChar
                if query == '\n'
                  then do forkRawSystem (head results) []
                          exitSuccess
-                 else putChar '\n'
-               mapM_ putStr $ intersperse " " results
-               putStr $ "\n> " ++ nq
+                 else putStr "\x1b[2K\r"
+               let colo = case length results of
+                            0 -> "\x1b[31m"
+                            _ -> "\x1b[34m"
+               putStr $ colo ++ nq ++ "\x1b[39m: "
+               putStr $ unwords $ take 5 results
                hFlush stdout
                ff list nq
 
@@ -34,7 +37,7 @@ main = do path <- getPath
           list <- getExecutables path
           hSetBuffering stdin NoBuffering
           hSetEcho stdin False
-          putStr "> "
+          putStr $ ": " ++ unwords (take 5 list)
           hFlush stdout
           ff list ""
 
