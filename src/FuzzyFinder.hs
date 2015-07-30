@@ -1,15 +1,3 @@
--- This is a small and simple fuzzy filter that works by comparing a list of
--- chars, the search input, against a list of list of chars, the possible
--- solutions. If is case-insensitive and features scoring based on the length
--- of the matched pattern and the position of the matched pattern in the
--- result. There are no dependencies aside from the standard library. The usage
--- looks like this:
---
--- fuzzyFinder "ae" ["Alphabet", "Aneurysm", "Albatross"]
---
--- The code is licensed under ISC and
--- © Robin 'sulami' Schroer <sulami@peerwire.org>
-
 module FuzzyFinder (fuzzyFinder) where
 
 import Data.Char (toLower)
