@@ -21,10 +21,11 @@ ff list q = do query <- getChar
                let results = case nq of
                               "" -> list
                               _  -> fuzzyFinder nq list
+               putStr "\x1b[2K\r"
                if query == '\n'
                  then do forkRawSystem (head results) []
                          exitSuccess
-                 else putStr "\x1b[2K\r"
+                 else return ()
                let colo = case length results of
                             0 -> "\x1b[31m"
                             _ -> "\x1b[34m"
