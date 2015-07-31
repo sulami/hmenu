@@ -11,14 +11,14 @@ need to install GHC and [missingH][mh].
 
 #### Stack
 
-```
+```sh
 stack build
 stack install
 ```
 
 #### Cabal
 
-```
+```sh
 cabal sandbox init # recommended
 cabal install MissingH
 cabal build
