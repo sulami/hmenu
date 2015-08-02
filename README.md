@@ -25,6 +25,8 @@ cabal build
 cabal install
 ```
 
+You can also install it directly from [hackage][hack].
+
 Usage
 -----
 
@@ -38,4 +40,5 @@ within the program name and distance of the first match from the beginning of
 the name.
 
 [mh]: https://hackage.haskell.org/package/MissingH
+[hack]: https://hackage.haskell.org/package/hmenu
 
