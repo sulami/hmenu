@@ -3,8 +3,10 @@
 
 name:                hmenu
 version:             0.1.0.1
--- synopsis:            
--- description:         
+synopsis:            CLI fuzzy finder and launcher
+description:         hmenu is a program launcher for the terminal inspired by
+                     dmenu. Contrary to dmenu, it uses fuzzy filtering to find
+                     the program you are looking for.
 license:             BSD3
 license-file:        LICENSE
 author:              Robin Schroer
